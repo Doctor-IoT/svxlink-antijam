@@ -4,7 +4,7 @@
 
 Author  : IZ0ABD Francesco - https://iz0abd.wordpress.com
 License : MIT  
-Hardware: UDOO NEO (Ubuntu 18.04, ARM) — SvxLink 26.05.1
+Hardware: UDOO NEO (Ubuntu 18.04, ARM) or any other SBC — SvxLink 26.05.1
 
 ---
 
