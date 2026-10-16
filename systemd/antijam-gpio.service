@@ -1,0 +1,28 @@
+[Unit]
+Description=Anti-jam GPIO PTT enforcer for SvxLink
+After=svxlink.service
+Wants=svxlink.service
+
+[Service]
+Type=simple
+# Put the GPIO in a safe state (output, low) before the Python loop starts,
+# including fast service restarts.
+ExecStartPre=/bin/sh -c '\
+    echo 177 > /sys/class/gpio/export 2>/dev/null || true; \
+    echo out > /sys/class/gpio/gpio177/direction; \
+    echo 0   > /sys/class/gpio/gpio177/value'
+ExecStart=/usr/bin/python3 /usr/local/lib/svxlink/antijam_gpio.py
+# Ensure PTT stays low even on stop or crash
+ExecStopPost=/bin/sh -c 'echo 0 > /sys/class/gpio/gpio177/value 2>/dev/null || true'
+Restart=always
+RestartSec=5
+User=root
+PrivateTmp=true
+NoNewPrivileges=true
+ProtectHome=true
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=antijam-gpio
+
+[Install]
+WantedBy=multi-user.target
