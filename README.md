@@ -1,6 +1,6 @@
 # svxlink-antijam
 
-**Anti-jamming protection system for a SvxLink repeater on UDOO NEO and other SBC**
+**Anti-jamming protection system for a SvxLink repeater on UDOO NEO and any other SBC**
 
 Author  : IZ0ABD Francesco - https://iz0abd.wordpress.com
 License : MIT  
